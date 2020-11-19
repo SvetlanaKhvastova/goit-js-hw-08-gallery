@@ -11,8 +11,6 @@ const refs = {
 refs.gallery.addEventListener('click', onGalleryClick);
 refs.closeModalBtn.addEventListener('click', closeModal);
 refs.closeOverlay.addEventListener('click', closeModal);
-window.addEventListener('keydown', closeModalEsc);
-window.addEventListener('keydown', arrowModalImg);
 
 const galleryMarkup = createGalleryMarkup(items);
 refs.gallery.insertAdjacentHTML('beforeend', galleryMarkup);
@@ -55,18 +53,22 @@ function onGalleryClick(event) {
 }
 
 function setLargeImg(url) {
-  refs.largeImage.src = url;
   refs.imgModal.src = url;
 }
 
 function openModal() {
   refs.largeImage.classList.add('is-open');
+  window.addEventListener('keydown', closeModalEsc);
+  window.addEventListener('keydown', arrowModalImg);
 }
 
 function closeModal() {
   refs.largeImage.classList.remove('is-open');
   refs.imgModal.src = '';
   refs.imgModal.alt = '';
+
+  window.removeEventListener('keydown', closeModalEsc);
+  window.removeEventListener('keydown', arrowModalImg);
 }
 
 function closeModalEsc(event) {
