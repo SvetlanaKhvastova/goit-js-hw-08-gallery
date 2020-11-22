@@ -1,6 +1,7 @@
 import items from './gallery-items.js';
 
 // index for slider //
+let dataIndex = 0;
 
 const refs = {
   gallery: document.querySelector('.js-gallery'),
@@ -9,8 +10,6 @@ const refs = {
   closeOverlay: document.querySelector('.lightbox__overlay'),
   imgModal: document.querySelector('.lightbox__image'),
 };
-
-let dataIndex = 0;
 
 refs.gallery.addEventListener('click', onGalleryClick);
 refs.closeModalBtn.addEventListener('click', closeModal);
