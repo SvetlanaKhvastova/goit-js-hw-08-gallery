@@ -1,6 +1,5 @@
 import items from './gallery-items.js';
 
-// index for slider //
 let dataIndex = 0;
 
 const refs = {
