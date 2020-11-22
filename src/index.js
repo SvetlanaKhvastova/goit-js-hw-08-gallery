@@ -1,5 +1,7 @@
 import items from './gallery-items.js';
 
+// index for slider //
+
 const refs = {
   gallery: document.querySelector('.js-gallery'),
   largeImage: document.querySelector('.js-lightbox'),
@@ -7,6 +9,8 @@ const refs = {
   closeOverlay: document.querySelector('.lightbox__overlay'),
   imgModal: document.querySelector('.lightbox__image'),
 };
+
+let dataIndex = 0;
 
 refs.gallery.addEventListener('click', onGalleryClick);
 refs.closeModalBtn.addEventListener('click', closeModal);
@@ -77,12 +81,22 @@ function closeModalEsc(event) {
   }
 }
 
-// в процессе
+// Пролистывание изображений галереи в открытом модальном окне клавишами "влево" и "вправо".
 function arrowModalImg(event) {
   if (event.code === 'ArrowRight') {
+    dataIndex += 1;
+    if (dataIndex === items.length) {
+      dataIndex = 0;
+    }
+    refs.imgModal.src = items[dataIndex].original;
     console.log('следующая картинка вправо');
   }
   if (event.code === 'ArrowLeft') {
+    dataIndex -= 1;
+    if (dataIndex < 0) {
+      dataIndex = items.length - 1;
+    }
+    refs.imgModal.src = items[dataIndex].original;
     console.log('следующая картинка влево');
   }
 }
